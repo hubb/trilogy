@@ -56,6 +56,7 @@ typedef struct {
     char *ssl_crl;
     char *ssl_crlpath;
     char *ssl_key;
+    bool ssl_ignore_unexpected_eof;
     char *tls_ciphersuites;
 
     struct timeval connect_timeout;

@@ -1137,4 +1137,18 @@ class ClientTest < TrilogyTest
     assert_operator SystemCallError, :===, klass.new
     assert_operator Trilogy::ConnectionError, :===, klass.new
   end
+
+  def test_connection_options_ignore_unexpected_eof
+    options = {
+      host: DEFAULT_HOST,
+      port: DEFAULT_PORT.to_s,
+      username: DEFAULT_USER,
+      password: DEFAULT_PASS,
+      ssl: "1",
+      ssl_ignore_unexpected_eof: true,
+    }
+    client = new_tcp_client(**options)
+
+    assert client.query("SELECT 1")
+  end
 end
